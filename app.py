@@ -122,10 +122,20 @@ Resume = {
     ]
 }
 
-# Define a route to handle the GET request and return your resume data
+# Create data for 9 more students (similar structure to the first student)
+students_data = []
+
+for i in range(1, 10):
+    student = Resume.copy()  # Copy the data from the first student
+    student["first_name"] = f"Student{i}"  # Change the first name
+    student["last_name"] = f"Lastname{i}"  # Change the last name
+    # Add any other modifications for each student here
+    students_data.append(student)
+
+# Define a route to handle the GET request and return the list of students' data
 @app.route('/api/resume', methods=['GET'])
-def get_resume():
-    return jsonify(Resume)
+def get_resumes():
+    return jsonify(students_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
